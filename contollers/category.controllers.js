@@ -8,10 +8,14 @@ module.exports.categoryController = {
   },
 
   addCategories: (req, res) => {
-
+    Category.create({'category': req.body.name}).then(() => {
+      res.json(`${req.body.name} - Категория добавлена`);
+    });
   },
 
   deleteCategories: (req, res) => {
-
+    Category.findByIdAndDelete(req.params.id).then(() => {
+      res.json(`Категория по ИД ${req.params.id} - удалена`);
+    });
   },
 };
